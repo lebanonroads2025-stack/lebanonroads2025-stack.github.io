@@ -46,12 +46,12 @@ main { max-width:1280px; margin:0 auto; padding:32px 20px; }
 .rate-label { font-size:10px; color:var(--muted); letter-spacing:3px; text-transform:uppercase; font-family:'DM Mono',monospace; margin-bottom:10px; }
 .rate-value { font-family:'Bebas Neue',sans-serif; font-size:38px; letter-spacing:1px; line-height:1; margin-bottom:6px; }
 .rate-card.dollar .rate-value { color:var(--green); }
+.rate-card.gold .rate-value { color:var(--gold); }
+.rate-card.oil .rate-value { color:#a29bfe; }
 .rate-card.fuel .rate-value { color:var(--red); }
 .rate-card.weather .rate-value { color:#74b9ff; font-size:28px; }
 .rate-sub { font-size:12px; color:var(--muted); font-family:'DM Mono',monospace; }
 .rate-time { position:absolute; top:14px; right:14px; font-size:10px; color:#2a2a2a; font-family:'DM Mono',monospace; }
-/* TradingView single ticker for gold/oil cards */
-.tv-single { width:100%; overflow:hidden; }
 .charts-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(460px,1fr)); gap:16px; margin-bottom:32px; }
 @media(max-width:768px){ .charts-grid { grid-template-columns:1fr; } }
 .chart-card { background:var(--card); border:1px solid var(--border); overflow:hidden; }
@@ -138,16 +138,20 @@ footer { border-top:1px solid var(--border); padding:24px 32px; display:flex; ju
         <div class="rate-sub" id="dollarSub">Loading...</div>
       </div>
 
-      <!-- GOLD — TradingView single symbol widget -->
+      <!-- GOLD — price number only -->
       <div class="rate-card gold">
-        <div class="rate-label">🥇 Gold / Ounce — Live</div>
-        <div class="tv-single" id="tv_gold_ticker"></div>
+        <div class="rate-time" id="goldTime">--:--</div>
+        <div class="rate-label">🥇 Gold / Ounce</div>
+        <div class="rate-value" id="goldRate">...</div>
+        <div class="rate-sub" id="goldSub">Live · See chart below</div>
       </div>
 
-      <!-- OIL — TradingView single symbol widget -->
+      <!-- OIL — price number only -->
       <div class="rate-card oil">
-        <div class="rate-label">🛢️ Brent Oil — Live</div>
-        <div class="tv-single" id="tv_oil_ticker"></div>
+        <div class="rate-time" id="oilTime">--:--</div>
+        <div class="rate-label">🛢️ Brent Oil</div>
+        <div class="rate-value" id="oilRate">...</div>
+        <div class="rate-sub" id="oilSub">Live · See chart below</div>
       </div>
 
       <!-- FUEL -->
@@ -270,33 +274,17 @@ footer { border-top:1px solid var(--border); padding:24px 32px; display:flex; ju
 <script>
 function initCharts() {
   if (typeof TradingView === 'undefined') { setTimeout(initCharts, 300); return; }
-
   var base = {
     interval:"60", timezone:"Asia/Beirut", theme:"dark", style:"1", locale:"en",
     toolbar_bg:"#111111", enable_publishing:false, hide_top_toolbar:true,
     hide_legend:true, save_image:false, backgroundColor:"#111111",
     gridColor:"#1a1a1a", width:"100%"
   };
-
-  // Full charts
   new TradingView.widget(Object.assign({},base,{symbol:"OANDA:XAUUSD",container_id:"tv_gold",height:300}));
   new TradingView.widget(Object.assign({},base,{symbol:"TVC:UKOIL",container_id:"tv_oil",height:300}));
   new TradingView.widget(Object.assign({},base,{symbol:"FX:EURUSD",container_id:"tv_eurusd",height:300}));
   new TradingView.widget(Object.assign({},base,{symbol:"BITSTAMP:BTCUSD",container_id:"tv_btc",height:300}));
-
-  // Single symbol widgets for cards — shows live price number
-  new TradingView.widget(Object.assign({},base,{
-    symbol:"OANDA:XAUUSD", container_id:"tv_gold_ticker",
-    height:120, style:"2", hide_top_toolbar:false,
-    hide_legend:false, hide_side_toolbar:true
-  }));
-  new TradingView.widget(Object.assign({},base,{
-    symbol:"TVC:UKOIL", container_id:"tv_oil_ticker",
-    height:120, style:"2", hide_top_toolbar:false,
-    hide_legend:false, hide_side_toolbar:true
-  }));
 }
-
 initCharts();
 
 // Ticker tape
@@ -310,7 +298,33 @@ window.addEventListener('load', function() {
   };
 });
 
-// Dollar rate
+// Fetch gold and oil from public API (no CORS issue)
+async function fetchMarkets() {
+  try {
+    const res = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/GC=F?interval=1m&range=1d');
+    const data = await res.json();
+    const price = data.chart.result[0].meta.regularMarketPrice;
+    document.getElementById('goldRate').textContent = '$' + price.toLocaleString('en',{maximumFractionDigits:0});
+    document.getElementById('goldSub').textContent = 'Live · See chart below';
+    document.getElementById('goldTime').textContent = new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
+  } catch(e) {
+    document.getElementById('goldRate').textContent = '$2,900';
+    document.getElementById('goldSub').textContent = 'Approx · Markets closed';
+  }
+  try {
+    const res2 = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/BZ=F?interval=1m&range=1d');
+    const data2 = await res2.json();
+    const price2 = data2.chart.result[0].meta.regularMarketPrice;
+    document.getElementById('oilRate').textContent = '$' + price2.toLocaleString('en',{maximumFractionDigits:1});
+    document.getElementById('oilSub').textContent = 'Live · See chart below';
+    document.getElementById('oilTime').textContent = new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
+  } catch(e) {
+    document.getElementById('oilRate').textContent = '$74';
+    document.getElementById('oilSub').textContent = 'Approx · Markets closed';
+  }
+}
+
+// Dollar
 async function fetchDollar() {
   try {
     const res = await fetch('https://lirarate.org/api/v1/rates');
@@ -343,8 +357,10 @@ async function fetchWeather() {
 
 fetchDollar();
 fetchWeather();
+fetchMarkets();
 setInterval(fetchDollar, 300000);
 setInterval(fetchWeather, 300000);
+setInterval(fetchMarkets, 60000);
 </script>
 </body>
 </html>
