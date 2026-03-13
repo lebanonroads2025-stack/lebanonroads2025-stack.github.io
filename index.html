@@ -34,38 +34,63 @@ nav a:hover, nav a.active { color:var(--text); border-bottom-color:var(--red); }
 main { max-width:1280px; margin:0 auto; padding:32px 20px; }
 .section-title { font-family:'Bebas Neue',sans-serif; font-size:13px; letter-spacing:4px; color:var(--muted); margin-bottom:16px; text-transform:uppercase; display:flex; align-items:center; gap:12px; }
 .section-title::after { content:''; flex:1; height:1px; background:var(--border); }
-.rates-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-bottom:32px; }
-.rate-card { background:var(--card); border:1px solid var(--border); padding:20px; position:relative; overflow:hidden; transition:border-color 0.3s; }
-.rate-card:hover { border-color:#2a2a2a; }
-.rate-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; }
-.rate-card.dollar::before { background:var(--green); }
-.rate-card.gold::before { background:var(--gold); }
-.rate-card.fuel::before { background:var(--red); }
-.rate-card.weather::before { background:#74b9ff; }
-.rate-card.oil::before { background:#a29bfe; }
+
+/* WEATHER + WHATSAPP ROW */
+.top-row { display:grid; grid-template-columns:1fr 2fr; gap:12px; margin-bottom:32px; }
+@media(max-width:768px){ .top-row { grid-template-columns:1fr; } }
+.rate-card { background:var(--card); border:1px solid var(--border); padding:20px; position:relative; overflow:hidden; }
+.rate-card.weather::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:#74b9ff; }
 .rate-label { font-size:10px; color:var(--muted); letter-spacing:3px; text-transform:uppercase; font-family:'DM Mono',monospace; margin-bottom:10px; }
-.rate-value { font-family:'Bebas Neue',sans-serif; font-size:38px; letter-spacing:1px; line-height:1; margin-bottom:6px; }
-.rate-card.dollar .rate-value { color:var(--green); }
-.rate-card.gold .rate-value { color:var(--gold); }
-.rate-card.oil .rate-value { color:#a29bfe; }
-.rate-card.fuel .rate-value { color:var(--red); }
-.rate-card.weather .rate-value { color:#74b9ff; font-size:28px; }
+.rate-value { font-family:'Bebas Neue',sans-serif; font-size:38px; color:#74b9ff; line-height:1; margin-bottom:6px; }
 .rate-sub { font-size:12px; color:var(--muted); font-family:'DM Mono',monospace; }
 .rate-time { position:absolute; top:14px; right:14px; font-size:10px; color:#2a2a2a; font-family:'DM Mono',monospace; }
+
+/* WHATSAPP CTA */
+.whatsapp-cta { background:linear-gradient(135deg,#0a1f0a,#0d2b0d); border:1px solid #1a3a1a; padding:28px 32px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+.wa-text h3 { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:3px; color:#25D366; margin-bottom:6px; }
+.wa-text p { font-size:13px; color:var(--muted); max-width:400px; }
+.wa-btn { display:inline-flex; align-items:center; gap:10px; padding:14px 28px; background:#25D366; color:#000; text-decoration:none; font-weight:700; font-size:14px; letter-spacing:1px; transition:all 0.2s; white-space:nowrap; }
+.wa-btn:hover { background:#20b858; transform:translateY(-2px); }
+
+/* QUOTE */
+.quote-box { background:var(--card); border:1px solid var(--border); border-left:3px solid var(--red); padding:28px 32px; margin-bottom:32px; text-align:center; position:relative; }
+.quote-text { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:2px; color:var(--text); line-height:1.4; margin-bottom:10px; }
+
+.quote-tag { font-size:10px; color:var(--red); font-family:'DM Mono',monospace; letter-spacing:3px; }
+
+/* MUSIC */
+.music-box { background:var(--card); border:1px solid var(--border); border-left:3px solid var(--gold); padding:20px; margin-bottom:32px; }
+.music-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:3px; color:var(--gold); margin-bottom:14px; text-transform:uppercase; }
+
+/* NEWS */
+.news-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin-bottom:32px; }
+.news-card { background:var(--card); border:1px solid var(--border); padding:20px; transition:all 0.2s; text-decoration:none; color:var(--text); display:block; }
+.news-card:hover { border-color:#333; transform:translateY(-2px); }
+.news-source { font-size:10px; color:var(--red); letter-spacing:2px; font-family:'DM Mono',monospace; margin-bottom:8px; text-transform:uppercase; }
+.news-headline { font-size:14px; font-weight:600; line-height:1.5; margin-bottom:8px; }
+.news-time { font-size:11px; color:var(--muted); font-family:'DM Mono',monospace; }
+
+/* CHARTS */
 .charts-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(460px,1fr)); gap:16px; margin-bottom:32px; }
 @media(max-width:768px){ .charts-grid { grid-template-columns:1fr; } }
 .chart-card { background:var(--card); border:1px solid var(--border); overflow:hidden; }
 .chart-header { padding:14px 18px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
 .chart-title { font-family:'DM Mono',monospace; font-size:12px; letter-spacing:2px; color:var(--text); }
 .chart-live { font-size:10px; color:var(--green); font-family:'DM Mono',monospace; letter-spacing:1px; }
-.fuel-table { background:var(--card); border:1px solid var(--border); margin-bottom:32px; }
-.fuel-table-header { padding:14px 20px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
-.fuel-row { display:grid; grid-template-columns:1fr 1fr 1fr; padding:13px 20px; border-bottom:1px solid var(--border); align-items:center; transition:background 0.2s; }
-.fuel-row:hover { background:rgba(255,255,255,0.02); }
-.fuel-row:last-child { border-bottom:none; }
-.fuel-name { font-size:14px; color:var(--text); display:flex; align-items:center; gap:8px; }
-.fuel-price-lbp { font-family:'DM Mono',monospace; font-size:13px; color:var(--red); }
-.fuel-price-usd { font-family:'DM Mono',monospace; font-size:12px; color:var(--muted); text-align:right; }
+
+/* YOUTUBE */
+.youtube-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin-bottom:32px; }
+.yt-card { background:var(--card); border:1px solid var(--border); overflow:hidden; transition:all 0.2s; }
+.yt-card:hover { border-color:#333; transform:translateY(-2px); }
+.yt-link { text-decoration:none; color:var(--text); display:block; }
+.yt-thumb-wrap { position:relative; width:100%; height:170px; background:#1a1a1a; overflow:hidden; }
+.yt-thumb { width:100%; height:100%; object-fit:cover; }
+.yt-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:48px; height:48px; background:rgba(255,0,0,0.85); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; }
+.yt-info { padding:14px; }
+.yt-title { font-size:13px; font-weight:600; line-height:1.4; margin-bottom:6px; }
+.yt-channel { font-size:11px; color:var(--muted); font-family:'DM Mono',monospace; }
+
+/* GADGETS */
 .gadgets-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; margin-bottom:32px; }
 .gadget-card { background:var(--card); border:1px solid var(--border); overflow:hidden; transition:all 0.3s; text-decoration:none; color:var(--text); display:block; }
 .gadget-card:hover { border-color:#333; transform:translateY(-3px); }
@@ -74,6 +99,8 @@ main { max-width:1280px; margin:0 auto; padding:32px 20px; }
 .gadget-name { font-size:13px; font-weight:600; margin-bottom:6px; line-height:1.4; }
 .gadget-price { font-family:'DM Mono',monospace; font-size:13px; color:var(--gold); }
 .gadget-badge { display:inline-block; font-size:9px; letter-spacing:2px; padding:3px 8px; background:rgba(230,57,70,0.1); color:var(--red); border:1px solid rgba(230,57,70,0.2); margin-bottom:6px; }
+
+/* MAGAZINE */
 .magazine-cta { background:linear-gradient(135deg,#111 0%,#0d0d0d 100%); border:1px solid var(--border); padding:48px 40px; text-align:center; margin-bottom:32px; position:relative; overflow:hidden; }
 .magazine-cta::before { content:'🚗'; position:absolute; font-size:300px; opacity:0.03; top:-80px; right:-60px; }
 .mag-issue { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:4px; color:var(--red); margin-bottom:12px; }
@@ -85,6 +112,8 @@ main { max-width:1280px; margin:0 auto; padding:32px 20px; }
 .cta-btn.outline:hover { border-color:#444; background:#161616; }
 .cta-btn.gold-btn { background:var(--gold); color:#000; }
 .cta-btn.gold-btn:hover { background:#e09050; }
+
+/* SOCIAL */
 .social-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px; margin-bottom:32px; }
 .social-btn { display:flex; align-items:center; gap:10px; padding:14px 18px; background:var(--card); border:1px solid var(--border); color:var(--text); text-decoration:none; transition:all 0.2s; font-size:13px; font-weight:500; }
 .social-btn:hover { border-color:#333; background:#161616; transform:translateY(-2px); }
@@ -102,6 +131,7 @@ footer { border-top:1px solid var(--border); padding:24px 32px; display:flex; ju
 </head>
 <body>
 
+<!-- TICKER -->
 <div class="ticker-wrap" id="tickerWrap"></div>
 
 <header>
@@ -116,64 +146,74 @@ footer { border-top:1px solid var(--border); padding:24px 32px; display:flex; ju
 </header>
 
 <nav>
-  <a href="#markets" class="active">Markets</a>
-  <a href="#charts">Charts</a>
-  <a href="#fuel">Fuel Prices</a>
-  <a href="#gadgets">Car Gadgets</a>
+  <a href="#top" class="active">Home</a>
+  <a href="#vibes">Vibes</a>
+  <a href="#news">News</a>
+  <a href="#charts">Markets</a>
+  <a href="#videos">Videos</a>
+  <a href="#gadgets">Gadgets</a>
   <a href="#magazine">Magazine</a>
-  <a href="#follow">Follow Us</a>
+  <a href="#follow">Follow</a>
 </nav>
 
 <main>
 
-  <div id="markets" style="padding-top:16px">
-    <div class="section-title">Live Markets</div>
-    <div class="rates-grid">
-
-      <!-- DOLLAR -->
-      <div class="rate-card dollar">
-        <div class="rate-time" id="dollarTime">--:--</div>
-        <div class="rate-label">💵 USD / LBP</div>
-        <div class="rate-value" id="dollarRate">...</div>
-        <div class="rate-sub" id="dollarSub">Loading...</div>
-      </div>
-
-      <!-- GOLD — price number only -->
-      <div class="rate-card gold">
-        <div class="rate-time" id="goldTime">--:--</div>
-        <div class="rate-label">🥇 Gold / Ounce</div>
-        <div class="rate-value" id="goldRate">...</div>
-        <div class="rate-sub" id="goldSub">Live · See chart below</div>
-      </div>
-
-      <!-- OIL — price number only -->
-      <div class="rate-card oil">
-        <div class="rate-time" id="oilTime">--:--</div>
-        <div class="rate-label">🛢️ Brent Oil</div>
-        <div class="rate-value" id="oilRate">...</div>
-        <div class="rate-sub" id="oilSub">Live · See chart below</div>
-      </div>
-
-      <!-- FUEL -->
-      <div class="rate-card fuel">
-        <div class="rate-label">⛽ Petrol 95</div>
-        <div class="rate-value">2,004K</div>
-        <div class="rate-sub">ل.ل per 20L — Mar 10</div>
-      </div>
-
-      <!-- WEATHER -->
+  <!-- WEATHER + WHATSAPP -->
+  <div id="top" style="padding-top:16px">
+    <div class="top-row">
       <div class="rate-card weather">
         <div class="rate-time" id="weatherTime">--:--</div>
-        <div class="rate-label">🌤️ Beirut</div>
+        <div class="rate-label">🌤️ Beirut Now</div>
         <div class="rate-value" id="weatherTemp">...</div>
         <div class="rate-sub" id="weatherDesc">Loading...</div>
       </div>
-
+      <div class="whatsapp-cta">
+        <div class="wa-text">
+          <h3>💬 Join Lebanon Roads on WhatsApp</h3>
+          <p>Live updates, car culture, market intelligence — straight to your WhatsApp. Free. Forever.</p>
+        </div>
+        <a href="https://whatsapp.com/channel/0029Vb7P1M6K0IBpXMtU6r1I" target="_blank" class="wa-btn">📲 Join Now — It's Free</a>
+      </div>
     </div>
   </div>
 
+  <!-- DAILY QUOTE -->
+  <div id="vibes">
+    <div class="section-title">Today's Vibe 🇱🇧</div>
+    <div class="quote-box">
+      <div class="quote-text" id="quoteEn"></div>
+      
+      <div class="quote-tag">LEBANON ROADS — DAILY TRUTH</div>
+    </div>
+  </div>
+
+  <!-- DRIVING MUSIC -->
+  <div>
+    <div class="section-title">🎵 Driving Music — Lebanon Roads</div>
+    <div class="music-box">
+      <div class="music-label">🎵 Beirut Drive Playlist — Turn it up</div>
+      <iframe class="music-player" style="width:100%;height:152px;border-radius:0;border:none;" 
+        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX5OepaGriAIm?utm_source=generator&theme=0" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- NEWS -->
+  <div id="news">
+    <div class="section-title">Latest News</div>
+    <div class="news-grid" id="newsGrid">
+      <div class="news-card">
+        <div class="news-source">Lebanon Roads</div>
+        <div class="news-headline">Loading latest news...</div>
+        <div class="news-time">Just now</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIVE CHARTS -->
   <div id="charts">
-    <div class="section-title">Live Charts</div>
+    <div class="section-title">Live Markets</div>
     <div class="charts-grid">
       <div class="chart-card">
         <div class="chart-header"><div class="chart-title">GOLD — XAU/USD</div><div class="chart-live">● LIVE</div></div>
@@ -194,20 +234,35 @@ footer { border-top:1px solid var(--border); padding:24px 32px; display:flex; ju
     </div>
   </div>
 
-  <div id="fuel">
-    <div class="section-title">Fuel Prices Lebanon</div>
-    <div class="fuel-table">
-      <div class="fuel-table-header">
-        <span class="rate-label">Ministry of Energy — Updated Every Thursday</span>
-        <span style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace">Mar 10, 2026</span>
+  <!-- YOUTUBE VIDEOS -->
+  <div id="videos">
+    <div class="section-title">🚗 Car Videos</div>
+    <div class="youtube-grid" id="ytGrid">
+      <div class="yt-card">
+        <a href="https://www.youtube.com/results?search_query=beirut+cars+2026" target="_blank" class="yt-link">
+          <div class="yt-thumb-wrap"><div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;">🚗</div><div class="yt-play">▶</div></div>
+          <div class="yt-info"><div class="yt-title">Beirut Car Culture 2026</div><div class="yt-channel">Lebanon Roads</div></div>
+        </a>
       </div>
-      <div class="fuel-row"><div class="fuel-name">🔴 Petrol 95</div><div class="fuel-price-lbp">2,004,000 ل.ل / 20L</div><div class="fuel-price-usd">~$22.40</div></div>
-      <div class="fuel-row"><div class="fuel-name">🟠 Petrol 98</div><div class="fuel-price-lbp">1,867,000 ل.ل / 20L</div><div class="fuel-price-usd">~$20.86</div></div>
-      <div class="fuel-row"><div class="fuel-name">🔵 Diesel</div><div class="fuel-price-lbp">1,411,000 ل.ل / 20L</div><div class="fuel-price-usd">~$15.76</div></div>
-      <div class="fuel-row"><div class="fuel-name">🟡 Gas Cylinder</div><div class="fuel-price-lbp">1,417,000 ل.ل / cylinder</div><div class="fuel-price-usd">~$15.83</div></div>
+      <div class="yt-card">
+        <a href="https://www.youtube.com/results?search_query=lebanon+roads+drive" target="_blank" class="yt-link">
+          <div class="yt-thumb-wrap"><div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;">🛣️</div><div class="yt-play">▶</div></div>
+          <div class="yt-info"><div class="yt-title">Lebanon Night Drive</div><div class="yt-channel">Lebanon Roads</div></div>
+        </a>
+      </div>
+      <div class="yt-card">
+        <a href="https://www.youtube.com/results?search_query=bmw+mercedes+lebanon" target="_blank" class="yt-link">
+          <div class="yt-thumb-wrap"><div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;">🏎️</div><div class="yt-play">▶</div></div>
+          <div class="yt-info"><div class="yt-title">BMW vs Mercedes — Beirut Streets</div><div class="yt-channel">Lebanon Roads</div></div>
+        </a>
+      </div>
+    </div>
+    <div style="text-align:center;margin-bottom:32px">
+      <a href="https://www.youtube.com/@LebanonRoads" target="_blank" class="cta-btn outline">▶️ Watch All Videos on YouTube</a>
     </div>
   </div>
 
+  <!-- GADGETS -->
   <div id="gadgets">
     <div class="section-title">Car Gadgets & Accessories</div>
     <div class="gadgets-grid">
@@ -241,6 +296,7 @@ footer { border-top:1px solid var(--border); padding:24px 32px; display:flex; ju
     </div>
   </div>
 
+  <!-- MAGAZINE -->
   <div id="magazine" class="magazine-cta">
     <div class="mag-issue">ISSUE 001 — MARCH 2026</div>
     <h2>Lebanon Roads Magazine</h2>
@@ -250,6 +306,7 @@ footer { border-top:1px solid var(--border); padding:24px 32px; display:flex; ju
     <a href="https://whatsapp.com/channel/0029Vb7P1M6K0IBpXMtU6r1I" target="_blank" class="cta-btn outline">💬 WhatsApp Channel</a>
   </div>
 
+  <!-- FOLLOW -->
   <div id="follow">
     <div class="section-title">Follow Lebanon Roads</div>
     <div class="social-grid">
@@ -272,6 +329,21 @@ footer { border-top:1px solid var(--border); padding:24px 32px; display:flex; ju
 
 <script src="https://s3.tradingview.com/tv.js"></script>
 <script>
+// QUOTES — rotate daily
+var quotes = [
+  <br>You drive a Mercedes but borrow money to fill the tank. 🇱🇧", ar:"بتركب مرسيدس بس بتستلف مصاري تعبيها بنزين 🇱🇧"},
+  <br>The dollar went up. Your boss didn't call. Lebanon Roads did. 🇱🇧", ar:"الدولار طلع. رئيسك ما اتصل. Lebanon Roads اتصل. 🇱🇧"},
+  <br>Your car is cleaner than your intentions. 🚗🇱🇧", ar:"سيارتك أنظف من نواياك 🚗🇱🇧"},
+  <br>She ordered oat milk latte and paid in fresh dollars. Lebanese girl math. ☕🇱🇧", ar:"طلبت قهوة بحليب الشوفان ودفعت بدولار فريش. رياضيات البنت اللبنانية ☕🇱🇧"},
+  <br>Road rage in Beirut is not a mood. It is a lifestyle. 🔥🇱🇧", ar:"العصبية عالطريق ببيروت مش مزاج، هي أسلوب حياة 🔥🇱🇧"},
+  <br>He drives a BMW but can't afford your coffee. Run. 🇱🇧", ar:"عنده BMW بس ما يقدر يدفع قهوتك. اهربي 🇱🇧"},
+  <br>Your vibration is high. Your salary is not. 🇱🇧", ar:"ترددك عالي. راتبك لا 🇱🇧"},
+];
+var qIndex = Math.floor(Date.now() / 86400000) % quotes.length;
+document.getElementById('quoteEn').textContent = quotes[qIndex];
+
+
+// TRADINGVIEW CHARTS
 function initCharts() {
   if (typeof TradingView === 'undefined') { setTimeout(initCharts, 300); return; }
   var base = {
@@ -287,7 +359,7 @@ function initCharts() {
 }
 initCharts();
 
-// Ticker tape
+// TICKER TAPE
 window.addEventListener('load', function() {
   var script = document.createElement('script');
   script.type = 'module';
@@ -298,49 +370,7 @@ window.addEventListener('load', function() {
   };
 });
 
-// Fetch gold and oil from public API (no CORS issue)
-async function fetchMarkets() {
-  try {
-    const res = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/GC=F?interval=1m&range=1d');
-    const data = await res.json();
-    const price = data.chart.result[0].meta.regularMarketPrice;
-    document.getElementById('goldRate').textContent = '$' + price.toLocaleString('en',{maximumFractionDigits:0});
-    document.getElementById('goldSub').textContent = 'Live · See chart below';
-    document.getElementById('goldTime').textContent = new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
-  } catch(e) {
-    document.getElementById('goldRate').textContent = '$2,900';
-    document.getElementById('goldSub').textContent = 'Approx · Markets closed';
-  }
-  try {
-    const res2 = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/BZ=F?interval=1m&range=1d');
-    const data2 = await res2.json();
-    const price2 = data2.chart.result[0].meta.regularMarketPrice;
-    document.getElementById('oilRate').textContent = '$' + price2.toLocaleString('en',{maximumFractionDigits:1});
-    document.getElementById('oilSub').textContent = 'Live · See chart below';
-    document.getElementById('oilTime').textContent = new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
-  } catch(e) {
-    document.getElementById('oilRate').textContent = '$74';
-    document.getElementById('oilSub').textContent = 'Approx · Markets closed';
-  }
-}
-
-// Dollar
-async function fetchDollar() {
-  try {
-    const res = await fetch('https://lirarate.org/api/v1/rates');
-    const data = await res.json();
-    const buy = data.buy || '89,500';
-    const sell = data.sell || '90,000';
-    document.getElementById('dollarRate').textContent = buy;
-    document.getElementById('dollarSub').textContent = 'Buy: '+buy+' | Sell: '+sell+' ل.ل';
-    document.getElementById('dollarTime').textContent = new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
-  } catch(e) {
-    document.getElementById('dollarRate').textContent = '89,500';
-    document.getElementById('dollarSub').textContent = 'ل.ل backup rate';
-  }
-}
-
-// Weather
+// WEATHER
 async function fetchWeather() {
   try {
     const res = await fetch('https://wttr.in/Beirut?format=j1');
@@ -354,13 +384,38 @@ async function fetchWeather() {
     document.getElementById('weatherDesc').textContent = 'Beirut';
   }
 }
-
-fetchDollar();
 fetchWeather();
-fetchMarkets();
-setInterval(fetchDollar, 300000);
 setInterval(fetchWeather, 300000);
-setInterval(fetchMarkets, 60000);
+
+// NEWS — auto from RSS
+async function fetchNews() {
+  var feeds = [
+    {url:'https://api.rss2json.com/v1/api.json?rss_url=https://www.thenationalnews.com/rss/world/middle-east.xml', source:'The National'},
+    {url:'https://api.rss2json.com/v1/api.json?rss_url=https://feeds.bbci.co.uk/news/world/middle_east/rss.xml', source:'BBC'},
+  ];
+  var allNews = [];
+  for(var f of feeds){
+    try {
+      var res = await fetch(f.url);
+      var data = await res.json();
+      if(data.items){
+        data.items.slice(0,3).forEach(item => {
+          allNews.push({title:item.title, link:item.link, source:f.source, time:new Date(item.pubDate).toLocaleDateString()});
+        });
+      }
+    } catch(e){}
+  }
+  if(allNews.length > 0){
+    document.getElementById('newsGrid').innerHTML = allNews.slice(0,6).map(n =>
+      `<a href="${n.link}" target="_blank" class="news-card">
+        <div class="news-source">${n.source}</div>
+        <div class="news-headline">${n.title}</div>
+        <div class="news-time">${n.time}</div>
+      </a>`
+    ).join('');
+  }
+}
+fetchNews();
 </script>
 </body>
 </html>
