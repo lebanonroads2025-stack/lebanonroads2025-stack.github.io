@@ -1,421 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lebanon Roads — Car Culture & Live Market Intelligence</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-:root {
-  --red: #E63946;
-  --gold: #F4A261;
-  --green: #2EC4B6;
-  --dark: #0a0a0a;
-  --darker: #050505;
-  --card: #111111;
-  --border: #1e1e1e;
-  --text: #e8e8e8;
-  --muted: #555;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body { background:var(--dark); color:var(--text); font-family:'DM Sans',sans-serif; overflow-x:hidden; }
-.ticker-wrap { width:100%; background:#000; border-bottom:1px solid var(--border); min-height:46px; }
-header { padding:24px 32px; border-bottom:1px solid var(--border); background:var(--darker); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
-.logo { display:flex; align-items:center; gap:14px; }
-.logo-flag { font-size:40px; line-height:1; }
-.logo-text { font-family:'Bebas Neue',sans-serif; font-size:42px; letter-spacing:4px; color:#fff; line-height:1; }
-.logo-tagline { font-size:11px; color:var(--muted); letter-spacing:4px; text-transform:uppercase; font-family:'DM Mono',monospace; margin-top:4px; }
-.live-badge { display:flex; align-items:center; gap:8px; background:rgba(230,57,70,0.1); border:1px solid rgba(230,57,70,0.3); padding:8px 18px; font-family:'DM Mono',monospace; font-size:12px; color:var(--red); letter-spacing:2px; }
-.live-dot { width:8px; height:8px; background:var(--red); border-radius:50%; animation:pulse 1.5s infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.8)} }
-nav { background:#0d0d0d; border-bottom:1px solid var(--border); display:flex; gap:0; overflow-x:auto; padding:0 32px; }
-nav a { padding:14px 20px; color:var(--muted); text-decoration:none; font-size:12px; letter-spacing:2px; text-transform:uppercase; font-family:'DM Mono',monospace; white-space:nowrap; border-bottom:2px solid transparent; transition:all 0.2s; }
-nav a:hover, nav a.active { color:var(--text); border-bottom-color:var(--red); }
-main { max-width:1280px; margin:0 auto; padding:32px 20px; }
-.section-title { font-family:'Bebas Neue',sans-serif; font-size:13px; letter-spacing:4px; color:var(--muted); margin-bottom:16px; text-transform:uppercase; display:flex; align-items:center; gap:12px; }
-.section-title::after { content:''; flex:1; height:1px; background:var(--border); }
-
-/* WEATHER + WHATSAPP ROW */
-.top-row { display:grid; grid-template-columns:1fr 2fr; gap:12px; margin-bottom:32px; }
-@media(max-width:768px){ .top-row { grid-template-columns:1fr; } }
-.rate-card { background:var(--card); border:1px solid var(--border); padding:20px; position:relative; overflow:hidden; }
-.rate-card.weather::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:#74b9ff; }
-.rate-label { font-size:10px; color:var(--muted); letter-spacing:3px; text-transform:uppercase; font-family:'DM Mono',monospace; margin-bottom:10px; }
-.rate-value { font-family:'Bebas Neue',sans-serif; font-size:38px; color:#74b9ff; line-height:1; margin-bottom:6px; }
-.rate-sub { font-size:12px; color:var(--muted); font-family:'DM Mono',monospace; }
-.rate-time { position:absolute; top:14px; right:14px; font-size:10px; color:#2a2a2a; font-family:'DM Mono',monospace; }
-
-/* WHATSAPP CTA */
-.whatsapp-cta { background:linear-gradient(135deg,#0a1f0a,#0d2b0d); border:1px solid #1a3a1a; padding:28px 32px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
-.wa-text h3 { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:3px; color:#25D366; margin-bottom:6px; }
-.wa-text p { font-size:13px; color:var(--muted); max-width:400px; }
-.wa-btn { display:inline-flex; align-items:center; gap:10px; padding:14px 28px; background:#25D366; color:#000; text-decoration:none; font-weight:700; font-size:14px; letter-spacing:1px; transition:all 0.2s; white-space:nowrap; }
-.wa-btn:hover { background:#20b858; transform:translateY(-2px); }
-
-/* QUOTE */
-.quote-box { background:var(--card); border:1px solid var(--border); border-left:3px solid var(--red); padding:28px 32px; margin-bottom:32px; text-align:center; position:relative; }
-.quote-text { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:2px; color:var(--text); line-height:1.4; margin-bottom:10px; }
-
-.quote-tag { font-size:10px; color:var(--red); font-family:'DM Mono',monospace; letter-spacing:3px; }
-
-/* MUSIC */
-.music-box { background:var(--card); border:1px solid var(--border); border-left:3px solid var(--gold); padding:20px; margin-bottom:32px; }
-.music-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:3px; color:var(--gold); margin-bottom:14px; text-transform:uppercase; }
-
-/* NEWS */
-.news-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin-bottom:32px; }
-.news-card { background:var(--card); border:1px solid var(--border); padding:20px; transition:all 0.2s; text-decoration:none; color:var(--text); display:block; }
-.news-card:hover { border-color:#333; transform:translateY(-2px); }
-.news-source { font-size:10px; color:var(--red); letter-spacing:2px; font-family:'DM Mono',monospace; margin-bottom:8px; text-transform:uppercase; }
-.news-headline { font-size:14px; font-weight:600; line-height:1.5; margin-bottom:8px; }
-.news-time { font-size:11px; color:var(--muted); font-family:'DM Mono',monospace; }
-
-/* CHARTS */
-.charts-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(460px,1fr)); gap:16px; margin-bottom:32px; }
-@media(max-width:768px){ .charts-grid { grid-template-columns:1fr; } }
-.chart-card { background:var(--card); border:1px solid var(--border); overflow:hidden; }
-.chart-header { padding:14px 18px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
-.chart-title { font-family:'DM Mono',monospace; font-size:12px; letter-spacing:2px; color:var(--text); }
-.chart-live { font-size:10px; color:var(--green); font-family:'DM Mono',monospace; letter-spacing:1px; }
-
-/* YOUTUBE */
-.youtube-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin-bottom:32px; }
-.yt-card { background:var(--card); border:1px solid var(--border); overflow:hidden; transition:all 0.2s; }
-.yt-card:hover { border-color:#333; transform:translateY(-2px); }
-.yt-link { text-decoration:none; color:var(--text); display:block; }
-.yt-thumb-wrap { position:relative; width:100%; height:170px; background:#1a1a1a; overflow:hidden; }
-.yt-thumb { width:100%; height:100%; object-fit:cover; }
-.yt-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:48px; height:48px; background:rgba(255,0,0,0.85); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; }
-.yt-info { padding:14px; }
-.yt-title { font-size:13px; font-weight:600; line-height:1.4; margin-bottom:6px; }
-.yt-channel { font-size:11px; color:var(--muted); font-family:'DM Mono',monospace; }
-
-/* GADGETS */
-.gadgets-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; margin-bottom:32px; }
-.gadget-card { background:var(--card); border:1px solid var(--border); overflow:hidden; transition:all 0.3s; text-decoration:none; color:var(--text); display:block; }
-.gadget-card:hover { border-color:#333; transform:translateY(-3px); }
-.gadget-img { width:100%; height:140px; background:#1a1a1a; display:flex; align-items:center; justify-content:center; font-size:48px; }
-.gadget-info { padding:14px; }
-.gadget-name { font-size:13px; font-weight:600; margin-bottom:6px; line-height:1.4; }
-.gadget-price { font-family:'DM Mono',monospace; font-size:13px; color:var(--gold); }
-.gadget-badge { display:inline-block; font-size:9px; letter-spacing:2px; padding:3px 8px; background:rgba(230,57,70,0.1); color:var(--red); border:1px solid rgba(230,57,70,0.2); margin-bottom:6px; }
-
-/* MAGAZINE */
-.magazine-cta { background:linear-gradient(135deg,#111 0%,#0d0d0d 100%); border:1px solid var(--border); padding:48px 40px; text-align:center; margin-bottom:32px; position:relative; overflow:hidden; }
-.magazine-cta::before { content:'🚗'; position:absolute; font-size:300px; opacity:0.03; top:-80px; right:-60px; }
-.mag-issue { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:4px; color:var(--red); margin-bottom:12px; }
-.magazine-cta h2 { font-family:'Bebas Neue',sans-serif; font-size:56px; letter-spacing:5px; margin-bottom:8px; line-height:1; }
-.magazine-cta p { color:var(--muted); margin-bottom:28px; font-size:15px; max-width:500px; margin-left:auto; margin-right:auto; }
-.cta-btn { display:inline-flex; align-items:center; gap:10px; padding:15px 32px; background:var(--red); color:#fff; text-decoration:none; font-weight:600; font-size:14px; letter-spacing:1px; transition:all 0.2s; margin:5px; }
-.cta-btn:hover { background:#c0303c; transform:translateY(-2px); }
-.cta-btn.outline { background:transparent; border:1px solid var(--border); color:var(--text); }
-.cta-btn.outline:hover { border-color:#444; background:#161616; }
-.cta-btn.gold-btn { background:var(--gold); color:#000; }
-.cta-btn.gold-btn:hover { background:#e09050; }
-
-/* SOCIAL */
-.social-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px; margin-bottom:32px; }
-.social-btn { display:flex; align-items:center; gap:10px; padding:14px 18px; background:var(--card); border:1px solid var(--border); color:var(--text); text-decoration:none; transition:all 0.2s; font-size:13px; font-weight:500; }
-.social-btn:hover { border-color:#333; background:#161616; transform:translateY(-2px); }
-.social-btn.telegram { border-left:3px solid #2AABEE; }
-.social-btn.whatsapp { border-left:3px solid #25D366; }
-.social-btn.tiktok { border-left:3px solid #ff0050; }
-.social-btn.instagram { border-left:3px solid #E1306C; }
-.social-btn.youtube { border-left:3px solid #FF0000; }
-.social-btn.twitter { border-left:3px solid #1DA1F2; }
-.social-btn.bot { border-left:3px solid var(--gold); }
-footer { border-top:1px solid var(--border); padding:24px 32px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
-.footer-logo { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:3px; color:#333; }
-.footer-copy { font-size:11px; color:#333; font-family:'DM Mono',monospace; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lebanon Roads</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; background:#f4f4f4; }
+    header, section { padding:20px; }
+    header { background:#111; color:#fff; }
+    .join-btn { display:block; text-align:center; margin:20px auto; padding:15px; background:#25D366; color:#fff; font-size:20px; text-decoration:none; border-radius:8px; width:250px; }
+    h2 { margin-top:0; }
+    .social a { margin:0 10px; font-size:24px; color:#111; }
+    iframe { border:none; }
+  </style>
 </head>
 <body>
 
-<!-- TICKER -->
-<div class="ticker-wrap" id="tickerWrap"></div>
-
-<header>
-  <div class="logo">
-    <div class="logo-flag">🇱🇧</div>
-    <div>
-      <div class="logo-text">Lebanon Roads</div>
-      <div class="logo-tagline">Car Culture · Live Markets · Lebanese Intelligence</div>
-    </div>
-  </div>
-  <div class="live-badge"><div class="live-dot"></div>LIVE DATA</div>
-</header>
-
-<nav>
-  <a href="#top" class="active">Home</a>
-  <a href="#vibes">Vibes</a>
-  <a href="#news">News</a>
-  <a href="#charts">Markets</a>
-  <a href="#videos">Videos</a>
-  <a href="#gadgets">Gadgets</a>
-  <a href="#magazine">Magazine</a>
-  <a href="#follow">Follow</a>
-</nav>
-
-<main>
-
-  <!-- WEATHER + WHATSAPP -->
-  <div id="top" style="padding-top:16px">
-    <div class="top-row">
-      <div class="rate-card weather">
-        <div class="rate-time" id="weatherTime">--:--</div>
-        <div class="rate-label">🌤️ Beirut Now</div>
-        <div class="rate-value" id="weatherTemp">...</div>
-        <div class="rate-sub" id="weatherDesc">Loading...</div>
-      </div>
-      <div class="whatsapp-cta">
-        <div class="wa-text">
-          <h3>💬 Join Lebanon Roads on WhatsApp</h3>
-          <p>Live updates, car culture, market intelligence — straight to your WhatsApp. Free. Forever.</p>
-        </div>
-        <a href="https://whatsapp.com/channel/0029Vb7P1M6K0IBpXMtU6r1I" target="_blank" class="wa-btn">📲 Join Now — It's Free</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- DAILY QUOTE -->
-  <div id="vibes">
-    <div class="section-title">Today's Vibe 🇱🇧</div>
-    <div class="quote-box">
-      <div class="quote-text" id="quoteEn"></div>
-      
-      <div class="quote-tag">LEBANON ROADS — DAILY TRUTH</div>
-    </div>
-  </div>
-
-  <!-- DRIVING MUSIC -->
-  <div>
-    <div class="section-title">🎵 Driving Music — Lebanon Roads</div>
-    <div class="music-box">
-      <div class="music-label">🎵 Beirut Drive Playlist — Turn it up</div>
-      <iframe class="music-player" style="width:100%;height:152px;border-radius:0;border:none;" 
-        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX5OepaGriAIm?utm_source=generator&theme=0" 
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-        loading="lazy"></iframe>
-    </div>
-  </div>
-
-  <!-- NEWS -->
-  <div id="news">
-    <div class="section-title">Latest News</div>
-    <div class="news-grid" id="newsGrid">
-      <div class="news-card">
-        <div class="news-source">Lebanon Roads</div>
-        <div class="news-headline">Loading latest news...</div>
-        <div class="news-time">Just now</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- LIVE CHARTS -->
-  <div id="charts">
-    <div class="section-title">Live Markets</div>
-    <div class="charts-grid">
-      <div class="chart-card">
-        <div class="chart-header"><div class="chart-title">GOLD — XAU/USD</div><div class="chart-live">● LIVE</div></div>
-        <div id="tv_gold" style="height:300px"></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-header"><div class="chart-title">OIL — BRENT CRUDE</div><div class="chart-live">● LIVE</div></div>
-        <div id="tv_oil" style="height:300px"></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-header"><div class="chart-title">EUR/USD</div><div class="chart-live">● LIVE</div></div>
-        <div id="tv_eurusd" style="height:300px"></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-header"><div class="chart-title">BITCOIN — BTC/USD</div><div class="chart-live">● LIVE</div></div>
-        <div id="tv_btc" style="height:300px"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- YOUTUBE VIDEOS -->
-  <div id="videos">
-    <div class="section-title">🚗 Car Videos</div>
-    <div class="youtube-grid" id="ytGrid">
-      <div class="yt-card">
-        <a href="https://www.youtube.com/results?search_query=beirut+cars+2026" target="_blank" class="yt-link">
-          <div class="yt-thumb-wrap"><div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;">🚗</div><div class="yt-play">▶</div></div>
-          <div class="yt-info"><div class="yt-title">Beirut Car Culture 2026</div><div class="yt-channel">Lebanon Roads</div></div>
-        </a>
-      </div>
-      <div class="yt-card">
-        <a href="https://www.youtube.com/results?search_query=lebanon+roads+drive" target="_blank" class="yt-link">
-          <div class="yt-thumb-wrap"><div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;">🛣️</div><div class="yt-play">▶</div></div>
-          <div class="yt-info"><div class="yt-title">Lebanon Night Drive</div><div class="yt-channel">Lebanon Roads</div></div>
-        </a>
-      </div>
-      <div class="yt-card">
-        <a href="https://www.youtube.com/results?search_query=bmw+mercedes+lebanon" target="_blank" class="yt-link">
-          <div class="yt-thumb-wrap"><div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;">🏎️</div><div class="yt-play">▶</div></div>
-          <div class="yt-info"><div class="yt-title">BMW vs Mercedes — Beirut Streets</div><div class="yt-channel">Lebanon Roads</div></div>
-        </a>
-      </div>
-    </div>
-    <div style="text-align:center;margin-bottom:32px">
-      <a href="https://www.youtube.com/@LebanonRoads" target="_blank" class="cta-btn outline">▶️ Watch All Videos on YouTube</a>
-    </div>
-  </div>
-
-  <!-- GADGETS -->
-  <div id="gadgets">
-    <div class="section-title">Car Gadgets & Accessories</div>
-    <div class="gadgets-grid">
-      <a href="https://www.aliexpress.com/wholesale?SearchText=4k+dash+cam" target="_blank" class="gadget-card">
-        <div class="gadget-img">📷</div>
-        <div class="gadget-info"><div class="gadget-badge">BEST SELLER</div><div class="gadget-name">4K Dash Cam Front & Rear</div><div class="gadget-price">From $18</div></div>
-      </a>
-      <a href="https://www.aliexpress.com/wholesale?SearchText=car+usb+c+charger" target="_blank" class="gadget-card">
-        <div class="gadget-img">🔌</div>
-        <div class="gadget-info"><div class="gadget-badge">HOT</div><div class="gadget-name">Car Fast Charger USB-C 65W</div><div class="gadget-price">From $8</div></div>
-      </a>
-      <a href="https://www.aliexpress.com/wholesale?SearchText=magnetic+phone+mount+car" target="_blank" class="gadget-card">
-        <div class="gadget-img">📱</div>
-        <div class="gadget-info"><div class="gadget-badge">NEW</div><div class="gadget-name">Magnetic Phone Mount Dashboard</div><div class="gadget-price">From $5</div></div>
-      </a>
-      <a href="https://www.aliexpress.com/wholesale?SearchText=bluetooth+fm+transmitter+car" target="_blank" class="gadget-card">
-        <div class="gadget-img">🎵</div>
-        <div class="gadget-info"><div class="gadget-badge">TOP RATED</div><div class="gadget-name">Bluetooth FM Transmitter</div><div class="gadget-price">From $12</div></div>
-      </a>
-      <a href="https://www.aliexpress.com/wholesale?SearchText=car+led+ambient+lights" target="_blank" class="gadget-card">
-        <div class="gadget-img">💡</div>
-        <div class="gadget-info"><div class="gadget-badge">UPGRADE</div><div class="gadget-name">LED Interior Ambient Lights</div><div class="gadget-price">From $9</div></div>
-      </a>
-      <a href="https://www.aliexpress.com/wholesale?SearchText=tpms+tire+pressure+monitor" target="_blank" class="gadget-card">
-        <div class="gadget-img">🛡️</div>
-        <div class="gadget-info"><div class="gadget-badge">POPULAR</div><div class="gadget-name">Tire Pressure Monitor TPMS</div><div class="gadget-price">From $22</div></div>
-      </a>
-    </div>
-    <div style="text-align:center;margin-top:8px;margin-bottom:32px">
-      <a href="https://www.aliexpress.com" target="_blank" class="cta-btn outline">View All Car Gadgets →</a>
-    </div>
-  </div>
-
-  <!-- MAGAZINE -->
-  <div id="magazine" class="magazine-cta">
-    <div class="mag-issue">ISSUE 001 — MARCH 2026</div>
-    <h2>Lebanon Roads Magazine</h2>
-    <p>Lebanon's first car lifestyle magazine. Street culture, market intelligence, car reviews and more.</p>
-    <a href="https://t.me/LebanonRoads" target="_blank" class="cta-btn">📱 Get on Telegram</a>
-    <a href="https://t.me/LebanonRoadsBot" target="_blank" class="cta-btn gold-btn">🤖 Live Bot</a>
-    <a href="https://whatsapp.com/channel/0029Vb7P1M6K0IBpXMtU6r1I" target="_blank" class="cta-btn outline">💬 WhatsApp Channel</a>
-  </div>
-
-  <!-- FOLLOW -->
-  <div id="follow">
-    <div class="section-title">Follow Lebanon Roads</div>
-    <div class="social-grid">
-      <a href="https://t.me/LebanonRoads" class="social-btn telegram" target="_blank">✈️ Telegram</a>
-      <a href="https://t.me/LebanonRoadsBot" class="social-btn bot" target="_blank">🤖 Live Bot</a>
-      <a href="https://whatsapp.com/channel/0029Vb7P1M6K0IBpXMtU6r1I" class="social-btn whatsapp" target="_blank">💬 WhatsApp</a>
-      <a href="https://www.tiktok.com/@lebanon.roads" class="social-btn tiktok" target="_blank">🎵 TikTok</a>
-      <a href="https://www.instagram.com/lebanon.roads/" class="social-btn instagram" target="_blank">📸 Instagram</a>
-      <a href="https://www.youtube.com/@LebanonRoads" class="social-btn youtube" target="_blank">▶️ YouTube</a>
-      <a href="https://x.com/LebanonRoads" class="social-btn twitter" target="_blank">🐦 X / Twitter</a>
-    </div>
-  </div>
-
-</main>
-
-<footer>
-  <div class="footer-logo">Lebanon Roads</div>
-  <div class="footer-copy">© 2026 — CAR CULTURE & LIVE MARKET INTELLIGENCE — BEIRUT 🇱🇧</div>
-</footer>
-
-<script src="https://s3.tradingview.com/tv.js"></script>
-<script>
-// QUOTES — rotate daily
-var quotes = [
-  <br>You drive a Mercedes but borrow money to fill the tank. 🇱🇧", ar:"بتركب مرسيدس بس بتستلف مصاري تعبيها بنزين 🇱🇧"},
-  <br>The dollar went up. Your boss didn't call. Lebanon Roads did. 🇱🇧", ar:"الدولار طلع. رئيسك ما اتصل. Lebanon Roads اتصل. 🇱🇧"},
-  <br>Your car is cleaner than your intentions. 🚗🇱🇧", ar:"سيارتك أنظف من نواياك 🚗🇱🇧"},
-  <br>She ordered oat milk latte and paid in fresh dollars. Lebanese girl math. ☕🇱🇧", ar:"طلبت قهوة بحليب الشوفان ودفعت بدولار فريش. رياضيات البنت اللبنانية ☕🇱🇧"},
-  <br>Road rage in Beirut is not a mood. It is a lifestyle. 🔥🇱🇧", ar:"العصبية عالطريق ببيروت مش مزاج، هي أسلوب حياة 🔥🇱🇧"},
-  <br>He drives a BMW but can't afford your coffee. Run. 🇱🇧", ar:"عنده BMW بس ما يقدر يدفع قهوتك. اهربي 🇱🇧"},
-  <br>Your vibration is high. Your salary is not. 🇱🇧", ar:"ترددك عالي. راتبك لا 🇱🇧"},
-];
-var qIndex = Math.floor(Date.now() / 86400000) % quotes.length;
-document.getElementById('quoteEn').textContent = quotes[qIndex];
-
-
-// TRADINGVIEW CHARTS
-function initCharts() {
-  if (typeof TradingView === 'undefined') { setTimeout(initCharts, 300); return; }
-  var base = {
-    interval:"60", timezone:"Asia/Beirut", theme:"dark", style:"1", locale:"en",
-    toolbar_bg:"#111111", enable_publishing:false, hide_top_toolbar:true,
-    hide_legend:true, save_image:false, backgroundColor:"#111111",
-    gridColor:"#1a1a1a", width:"100%"
-  };
-  new TradingView.widget(Object.assign({},base,{symbol:"OANDA:XAUUSD",container_id:"tv_gold",height:300}));
-  new TradingView.widget(Object.assign({},base,{symbol:"TVC:UKOIL",container_id:"tv_oil",height:300}));
-  new TradingView.widget(Object.assign({},base,{symbol:"FX:EURUSD",container_id:"tv_eurusd",height:300}));
-  new TradingView.widget(Object.assign({},base,{symbol:"BITSTAMP:BTCUSD",container_id:"tv_btc",height:300}));
-}
-initCharts();
-
-// TICKER TAPE
-window.addEventListener('load', function() {
-  var script = document.createElement('script');
-  script.type = 'module';
-  script.src = 'https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js';
-  document.head.appendChild(script);
-  script.onload = function() {
-    document.getElementById('tickerWrap').innerHTML = "<tv-ticker-tape colorTheme=\"dark\" symbols='FOREXCOM:SPXUSD,FX:EURUSD,FX:USDJPY,BITSTAMP:BTCUSD,CMCMARKETS:GOLD,TVC:UKOIL,BITSTAMP:ETHUSD'></tv-ticker-tape>";
-  };
-});
-
-// WEATHER
-async function fetchWeather() {
-  try {
-    const res = await fetch('https://wttr.in/Beirut?format=j1');
-    const data = await res.json();
-    const c = data.current_condition[0];
-    document.getElementById('weatherTemp').textContent = c.temp_C+'°C / '+c.temp_F+'°F';
-    document.getElementById('weatherDesc').textContent = c.weatherDesc[0].value;
-    document.getElementById('weatherTime').textContent = new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
-  } catch(e) {
-    document.getElementById('weatherTemp').textContent = '--°C';
-    document.getElementById('weatherDesc').textContent = 'Beirut';
-  }
-}
-fetchWeather();
-setInterval(fetchWeather, 300000);
-
-// NEWS — auto from RSS
-async function fetchNews() {
-  var feeds = [
-    {url:'https://api.rss2json.com/v1/api.json?rss_url=https://www.thenationalnews.com/rss/world/middle-east.xml', source:'The National'},
-    {url:'https://api.rss2json.com/v1/api.json?rss_url=https://feeds.bbci.co.uk/news/world/middle_east/rss.xml', source:'BBC'},
-  ];
-  var allNews = [];
-  for(var f of feeds){
-    try {
-      var res = await fetch(f.url);
-      var data = await res.json();
-      if(data.items){
-        data.items.slice(0,3).forEach(item => {
-          allNews.push({title:item.title, link:item.link, source:f.source, time:new Date(item.pubDate).toLocaleDateString()});
-        });
+  <!-- TradingView Ticker Tape -->
+  <header>
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+      {
+        "symbols": [
+          { "proName": "FOREXCOM:USDLBP", "title": "USD/LBP" },
+          { "proName": "NASDAQ:TSLA", "title": "Tesla" },
+          { "proName": "NYSE:F", "title": "Ford" }
+        ],
+        "colorTheme": "dark",
+        "isTransparent": false,
+        "displayMode": "adaptive",
+        "locale": "en"
       }
-    } catch(e){}
-  }
-  if(allNews.length > 0){
-    document.getElementById('newsGrid').innerHTML = allNews.slice(0,6).map(n =>
-      `<a href="${n.link}" target="_blank" class="news-card">
-        <div class="news-source">${n.source}</div>
-        <div class="news-headline">${n.title}</div>
-        <div class="news-time">${n.time}</div>
-      </a>`
-    ).join('');
-  }
-}
-fetchNews();
-</script>
+      </script>
+    </div>
+  </header>
+
+  <!-- Beirut Weather -->
+  <section>
+    <h2>Beirut Weather</h2>
+    <iframe src="https://forecast7.com/en/33d8935d50/beirut/" width="100%" height="200"></iframe>
+  </section>
+
+  <!-- WhatsApp Join Button -->
+  <a class="join-btn" href="https://wa.me/96176094703" target="_blank">Join Us on WhatsApp</a>
+
+  <!-- Daily Ego Quote -->
+  <section>
+    <h2>Daily Ego Quote</h2>
+    <blockquote id="egoQuote">Loading...</blockquote>
+    <script>
+      const quotes = [
+        "Drive with pride, not haste.",
+        "Your car reflects your spirit.",
+        "Roads are made for journeys, not destinations.",
+        "Style is the ultimate horsepower."
+      ];
+      document.getElementById("egoQuote").innerText = quotes[Math.floor(Math.random()*quotes.length)];
+    </script>
+  </section>
+
+  <!-- Spotify Driving Music -->
+  <section>
+    <h2>Driving Music</h2>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXdPec7aLTmlC" width="100%" height="380" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+  </section>
+
+  <!-- Auto News Feed -->
+  <section>
+    <h2>Auto News</h2>
+    <iframe src="https://www.autoblog.com/" width="100%" height="400"></iframe>
+  </section>
+
+  <!-- TradingView Charts -->
+  <section>
+    <h2>Live Charts</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+        {
+          "symbol": "NASDAQ:TSLA",
+          "interval": "D",
+          "theme": "light",
+          "locale": "en",
+          "autosize": true
+        }
+        </script>
+      </div>
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+        {
+          "symbol": "NYSE:F",
+          "interval": "D",
+          "theme": "light",
+          "locale": "en",
+          "autosize": true
+        }
+        </script>
+      </div>
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+        {
+          "symbol": "NASDAQ:AAPL",
+          "interval": "D",
+          "theme": "light",
+          "locale": "en",
+          "autosize": true
+        }
+        </script>
+      </div>
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+        {
+          "symbol": "FOREXCOM:USDLBP",
+          "interval": "D",
+          "theme": "light",
+          "locale": "en",
+          "autosize": true
+        }
+        </script>
+      </div>
+    </div>
+  </section>
+
+  <!-- Car Videos -->
+  <section>
+    <h2>Car Videos</h2>
+    <iframe width="100%" height="315" src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+  </section>
+
+  <!-- Car Gadgets -->
+  <section>
+    <h2>Car Gadgets</h2>
+    <ul>
+      <li><a href="https://www.aliexpress.com/item/1005001234567890.html" target="_blank">Smart Dash Cam</a></li>
+      <li><a href="https://www.aliexpress.com/item/1005009876543210.html" target="_blank">Wireless Tire Pressure Monitor</a></li>
+      <li><a href="https://www.aliexpress.com/item/1005001928374650.html" target="_blank">Car Vacuum Cleaner</a></li>
+    </ul>
+  </section>
+
+  <!-- Lebanon Roads Magazine -->
+  <section>
+    <h2>Lebanon Roads Magazine</h2>
+    <iframe src="https://issuu.com/" width="100%" height="400"></iframe>
+  </section>
+
+  <!-- Social Links -->
+  <section>
+    <h2>Follow Lebanon Roads</h2>
+    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="https://t.me/LebanonRoadsBot" target="_blank"><i class="fab fa-telegram"></i></a>
+    <a href="https://wa.me/96176094703" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://spotify.com" target="_blank"><i class="fab fa-spotify"></i></a>
+  </section>
+
 </body>
 </html>
