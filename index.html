@@ -1,168 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lebanon Roads</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    body { font-family: Arial, sans-serif; margin:0; background:#f4f4f4; }
-    header, section { padding:20px; }
-    header { background:#111; color:#fff; }
-    .join-btn { display:block; text-align:center; margin:20px auto; padding:15px; background:#25D366; color:#fff; font-size:20px; text-decoration:none; border-radius:8px; width:250px; }
-    h2 { margin-top:0; }
-    .social a { margin:0 10px; font-size:24px; color:#111; }
-    iframe { border:none; }
-    .charts { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lebanon Roads</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#0a0a0a;
+color:white;
+text-align:center;
+}
+
+header{
+padding:30px;
+font-size:40px;
+font-weight:bold;
+}
+
+section{
+padding:40px 20px;
+border-bottom:1px solid #222;
+}
+
+.whatsapp{
+background:#25D366;
+color:white;
+padding:18px 40px;
+font-size:22px;
+border-radius:10px;
+text-decoration:none;
+display:inline-block;
+margin-top:20px;
+}
+
+.quote{
+font-size:22px;
+margin-top:20px;
+color:#aaa;
+}
+
+.social a{
+margin:10px;
+color:white;
+font-size:18px;
+text-decoration:none;
+display:inline-block;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+.card{
+background:#111;
+padding:20px;
+border-radius:10px;
+}
+
+iframe{
+border:none;
+width:100%;
+height:300px;
+}
+
+</style>
 </head>
+
 <body>
 
-  <!-- TradingView Ticker Tape -->
-  <header>
-    <div class="tradingview-widget-container">
-      <div class="tradingview-widget-container__widget"></div>
-      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-      {
-        "symbols": [
-          { "proName": "FOREXCOM:USDLBP", "title": "USD/LBP" },
-          { "proName": "FX_IDC:EURUSD", "title": "EUR/USD" },
-          { "proName": "FX_IDC:USDJPY", "title": "USD/JPY" },
-          { "proName": "BITSTAMP:BTCUSD", "title": "BTC/USD" }
-        ],
-        "colorTheme": "dark",
-        "isTransparent": false,
-        "displayMode": "adaptive",
-        "locale": "en"
-      }
-      </script>
-    </div>
-  </header>
+<!-- TradingView ticker -->
+<div class="tradingview-widget-container">
+<div class="tradingview-widget-container__widget"></div>
+<script src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+{
+"symbols":[
+{"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},
+{"proName":"BITSTAMP:BTCUSD","title":"Bitcoin"},
+{"proName":"NASDAQ:TSLA","title":"Tesla"},
+{"proName":"NASDAQ:AAPL","title":"Apple"},
+{"proName":"FX:USDJPY","title":"USD/JPY"}
+],
+"showSymbolLogo":true,
+"isTransparent":true,
+"displayMode":"adaptive",
+"colorTheme":"dark"
+}
+</script>
+</div>
 
-  <!-- Beirut Weather -->
-  <section>
-    <h2>Beirut Weather</h2>
-    <iframe src="https://forecast7.com/en/33d8935d50/beirut/" width="100%" height="200"></iframe>
-  </section>
+<header>Lebanon Roads</header>
 
-  <!-- WhatsApp Join Button -->
-  <a class="join-btn" href="https://wa.me/96176094703" target="_blank">Join Us on WhatsApp</a>
+<section>
 
-  <!-- Daily Ego Quote -->
-  <section>
-    <h2>Daily Ego Quote</h2>
-    <blockquote id="egoQuote">Loading...</blockquote>
-    <script>
-      const quotes = [
-        "Drive with pride, not haste.",
-        "Your car reflects your spirit.",
-        "Roads are made for journeys, not destinations.",
-        "Style is the ultimate horsepower."
-      ];
-      document.getElementById("egoQuote").innerText = quotes[Math.floor(Math.random()*quotes.length)];
-    </script>
-  </section>
+<h2>Join the Lebanon Roads Community</h2>
 
-  <!-- Spotify Driving Music -->
-  <section>
-    <h2>Driving Music</h2>
-    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXdPec7aLTmlC" width="100%" height="380" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-  </section>
+<a class="whatsapp" href="https://chat.whatsapp.com/" target="_blank">
+Join WhatsApp Group
+</a>
 
-  <!-- Auto News Feed -->
-  <section>
-    <h2>Auto News</h2>
-    <iframe src="https://www.autoblog.com/" width="100%" height="400"></iframe>
-  </section>
+<div class="quote" id="quote"></div>
 
-  <!-- TradingView Charts -->
-  <section>
-    <h2>Live Charts</h2>
-    <div class="charts">
-      <div class="tradingview-widget-container">
-        <div class="tradingview-widget-container__widget"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-        {
-          "symbol": "NASDAQ:TSLA",
-          "interval": "D",
-          "theme": "light",
-          "locale": "en",
-          "autosize": true
-        }
-        </script>
-      </div>
-      <div class="tradingview-widget-container">
-        <div class="tradingview-widget-container__widget"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-        {
-          "symbol": "NYSE:F",
-          "interval": "D",
-          "theme": "light",
-          "locale": "en",
-          "autosize": true
-        }
-        </script>
-      </div>
-      <div class="tradingview-widget-container">
-        <div class="tradingview-widget-container__widget"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-        {
-          "symbol": "NASDAQ:AAPL",
-          "interval": "D",
-          "theme": "light",
-          "locale": "en",
-          "autosize": true
-        }
-        </script>
-      </div>
-      <div class="tradingview-widget-container">
-        <div class="tradingview-widget-container__widget"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-        {
-          "symbol": "FOREXCOM:USDLBP",
-          "interval": "D",
-          "theme": "light",
-          "locale": "en",
-          "autosize": true
-        }
-        </script>
-      </div>
-    </div>
-  </section>
+</section>
 
-  <!-- Car Videos -->
-  <section>
-    <h2>Car Videos</h2>
-    <iframe width="100%" height="315" src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
-  </section>
+<section>
 
-  <!-- Car Gadgets -->
-  <section>
-    <h2>Car Gadgets</h2>
-    <ul>
-      <li><a href="https://www.aliexpress.com/item/1005001234567890.html" target="_blank">Smart Dash Cam</a></li>
-      <li><a href="https://www.aliexpress.com/item/1005009876543210.html" target="_blank">Wireless Tire Pressure Monitor</a></li>
-      <li><a href="https://www.aliexpress.com/item/1005001928374650.html" target="_blank">Car Vacuum Cleaner</a></li>
-    </ul>
-  </section>
+<h2>Beirut Weather</h2>
 
-  <!-- Lebanon Roads Magazine -->
-  <section>
-    <h2>Lebanon Roads Magazine</h2>
-    <iframe src="https://issuu.com/" width="100%" height="400"></iframe>
-  </section>
+<a class="weatherwidget-io"
+href="https://forecast7.com/en/33d8935d50/beirut/"
+data-label_1="BEIRUT"
+data-label_2="WEATHER"
+data-theme="dark">BEIRUT WEATHER</a>
 
-  <!-- Social Links -->
-  <section>
-    <h2>Follow Lebanon Roads</h2>
-    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-    <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
-    <a href="https://t.me/LebanonRoadsBot" target="_blank"><i class="fab fa-telegram"></i></a>
-    <a href="https://wa.me/96176094703" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://spotify.com" target="_blank"><i class="fab fa-spotify"></i></a>
-  </section>
+<script>
+!function(d,s,id){
+var js,fjs=d.getElementsByTagName(s)[0];
+if(!d.getElementById(id)){
+js=d.createElement(s);js.id=id;
+js.src='https://weatherwidget.io/js/widget.min.js';
+fjs.parentNode.insertBefore(js,fjs);
+}}(document,'script','weatherwidget-io-js');
+</script>
+
+</section>
+
+<section>
+
+<h2>Driving Music</h2>
+
+<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP"></iframe>
+
+</section>
+
+<section>
+
+<h2>Market Charts</h2>
+
+<div class="grid">
+
+<div class="card">
+<iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:TSLA&interval=D"></iframe>
+</div>
+
+<div class="card">
+<iframe src="https://s.tradingview.com/widgetembed/?symbol=BITSTAMP:BTCUSD&interval=D"></iframe>
+</div>
+
+<div class="card">
+<iframe src="https://s.tradingview.com/widgetembed/?symbol=FX:USDJPY&interval=D"></iframe>
+</div>
+
+<div class="card">
+<iframe src="https://s.tradingview.com/widgetembed/?symbol=FOREXCOM:SPXUSD&interval=D"></iframe>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Car Videos</h2>
+
+<div class="grid">
+
+<div class="card">
+<iframe src="https://www.youtube.com/embed/32si5cfrCNc"></iframe>
+</div>
+
+<div class="card">
+<iframe src="https://www.youtube.com/embed/2g4sL1qkL8Q"></iframe>
+</div>
+
+<div class="card">
+<iframe src="https://www.youtube.com/embed/7p9R8p0kA1Q"></iframe>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Car Gadgets</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Car HUD Speed Display</h3>
+<a href="https://www.aliexpress.com" target="_blank">View Gadget</a>
+</div>
+
+<div class="card">
+<h3>LED Interior Lights</h3>
+<a href="https://www.aliexpress.com" target="_blank">View Gadget</a>
+</div>
+
+<div class="card">
+<h3>Wireless CarPlay Adapter</h3>
+<a href="https://www.aliexpress.com" target="_blank">View Gadget</a>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Lebanon Roads Magazine</h2>
+
+<p>Car culture, street racing stories, Lebanese builds, and the machines dominating Beirut roads.</p>
+
+</section>
+
+<section>
+
+<h2>Latest Car News</h2>
+
+<script src="https://rss.bloople.net/?url=https%3A%2F%2Fwww.motor1.com%2Frss%2Fall%2F&showtitle=false&type=js"></script>
+
+</section>
+
+<section class="social">
+
+<h2>Follow Lebanon Roads</h2>
+
+<a href="#">Instagram</a>
+<a href="#">TikTok</a>
+<a href="#">YouTube</a>
+<a href="#">Telegram</a>
+<a href="#">Twitter</a>
+<a href="#">Spotify</a>
+<a href="#">WhatsApp</a>
+
+</section>
+
+<script>
+
+const quotes = [
+
+"Drive the streets. Own the night.",
+"Engines speak louder than words.",
+"Power is earned behind the wheel.",
+"Lebanon roads never sleep.",
+"Speed reveals character.",
+"Respect the machine."
+
+];
+
+let i = 0;
+
+function rotateQuote(){
+document.getElementById("quote").innerText = quotes[i];
+i = (i+1) % quotes.length;
+}
+
+rotateQuote();
+setInterval(rotateQuote,5000);
+
+</script>
 
 </body>
 </html>
