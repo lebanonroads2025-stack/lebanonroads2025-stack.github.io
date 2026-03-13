@@ -13,6 +13,7 @@
     h2 { margin-top:0; }
     .social a { margin:0 10px; font-size:24px; color:#111; }
     iframe { border:none; }
+    .charts { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
   </style>
 </head>
 <body>
@@ -25,8 +26,9 @@
       {
         "symbols": [
           { "proName": "FOREXCOM:USDLBP", "title": "USD/LBP" },
-          { "proName": "NASDAQ:TSLA", "title": "Tesla" },
-          { "proName": "NYSE:F", "title": "Ford" }
+          { "proName": "FX_IDC:EURUSD", "title": "EUR/USD" },
+          { "proName": "FX_IDC:USDJPY", "title": "USD/JPY" },
+          { "proName": "BITSTAMP:BTCUSD", "title": "BTC/USD" }
         ],
         "colorTheme": "dark",
         "isTransparent": false,
@@ -76,7 +78,7 @@
   <!-- TradingView Charts -->
   <section>
     <h2>Live Charts</h2>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+    <div class="charts">
       <div class="tradingview-widget-container">
         <div class="tradingview-widget-container__widget"></div>
         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
@@ -85,7 +87,8 @@
           "interval": "D",
           "theme": "light",
           "locale": "en",
-          "autosize": true
+          "autosize": true,
+          "allow_symbol_change": true
         }
         </script>
       </div>
@@ -97,7 +100,8 @@
           "interval": "D",
           "theme": "light",
           "locale": "en",
-          "autosize": true
+          "autosize": true,
+          "allow_symbol_change": true
         }
         </script>
       </div>
@@ -109,7 +113,8 @@
           "interval": "D",
           "theme": "light",
           "locale": "en",
-          "autosize": true
+          "autosize": true,
+          "allow_symbol_change": true
         }
         </script>
       </div>
@@ -121,7 +126,8 @@
           "interval": "D",
           "theme": "light",
           "locale": "en",
-          "autosize": true
+          "autosize": true,
+          "allow_symbol_change": true
         }
         </script>
       </div>
