@@ -90,6 +90,36 @@ section{padding:5rem 2.5rem;border-bottom:1px solid var(--border)}
 .wa-btn{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:white;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;padding:14px 32px;border-radius:8px;text-decoration:none;cursor:none;transition:all .2s}
 .wa-btn:hover{background:#1ebe5d;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.3)}
 
+/* ARTIST SPOTLIGHT */
+.artist-spotlight{display:flex;align-items:center;gap:3rem;background:linear-gradient(135deg,#0f0a0a,#0d0d14);border:1px solid rgba(255,0,80,.15);border-radius:20px;padding:3rem;max-width:860px;margin:0 auto;position:relative;overflow:hidden}
+.artist-spotlight::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(255,0,80,.08) 0%,transparent 60%);pointer-events:none}
+.artist-visual{display:flex;flex-direction:column;align-items:center;gap:1.5rem;flex-shrink:0}
+.artist-avatar{position:relative;width:120px;height:120px;display:flex;align-items:center;justify-content:center}
+.avatar-ring{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,0,80,.4);animation:spinRing 8s linear infinite;background:conic-gradient(from 0deg,rgba(255,0,80,.6),transparent,rgba(255,0,80,.2),transparent)}
+@keyframes spinRing{to{transform:rotate(360deg)}}
+.avatar-inner{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#1a0a0a,#2a0a14);border:1px solid rgba(255,0,80,.3);display:flex;align-items:center;justify-content:center;font-size:2.4rem;z-index:1}
+.sound-bars{display:flex;gap:4px;align-items:flex-end;height:30px}
+.sound-bars span{display:block;width:4px;background:var(--red);border-radius:2px;animation:bar 1s ease-in-out infinite}
+.sound-bars span:nth-child(1){height:40%;animation-delay:0s}
+.sound-bars span:nth-child(2){height:80%;animation-delay:.15s}
+.sound-bars span:nth-child(3){height:60%;animation-delay:.3s}
+.sound-bars span:nth-child(4){height:100%;animation-delay:.1s}
+.sound-bars span:nth-child(5){height:50%;animation-delay:.25s}
+@keyframes bar{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+.artist-info{flex:1;min-width:0}
+.artist-tag{font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:.8rem}
+.artist-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,5rem);letter-spacing:.04em;line-height:1;margin-bottom:1rem;color:var(--text)}
+.artist-bio{font-size:.92rem;color:#999;line-height:1.75;margin-bottom:1.8rem;max-width:420px}
+.artist-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.anghami-btn{display:inline-flex;align-items:center;gap:10px;background:#FF0050;color:white;font-family:'Barlow',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.08em;text-transform:uppercase;padding:12px 24px;border-radius:6px;text-decoration:none;cursor:none;transition:all .2s}
+.anghami-btn:hover{background:#ff2266;transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,0,80,.3)}
+.platform-note{font-size:.72rem;color:var(--muted);letter-spacing:.08em}
+@media(max-width:640px){
+  .artist-spotlight{flex-direction:column;text-align:center;padding:2rem 1.5rem}
+  .artist-bio{max-width:100%}
+  .artist-actions{justify-content:center}
+}
+
 /* GRIDS */
 .market-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
 .market-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s}
@@ -130,7 +160,7 @@ section{padding:5rem 2.5rem;border-bottom:1px solid var(--border)}
 .social-pill.yt:hover{border-color:var(--red);color:var(--red)}
 .social-pill.tg:hover{border-color:#2CA5E0;color:#2CA5E0}
 .social-pill.tw:hover{border-color:#888;color:#ddd}
-.social-pill.sp:hover{border-color:#1DB954;color:#1DB954}
+.social-pill.anghami:hover{border-color:#FF0050;color:#FF0050}
 .social-pill.wa:hover{border-color:#25D366;color:#25D366}
 
 /* MAGAZINE */
@@ -197,7 +227,7 @@ footer{padding:2.5rem;display:flex;flex-direction:column;align-items:center;gap:
     <a href="#gadgets">Gadgets</a>
     <a href="#news">News</a>
   </div>
-  <a class="nav-cta" href="#community">Join Group</a>
+  <a class="nav-cta" href="https://whatsapp.com/channel/0029Vb7P1M6K0IBpXMtU6r1I" target="_blank">Join Channel</a>
 </nav>
 
 <!-- HERO -->
@@ -224,32 +254,209 @@ footer{padding:2.5rem;display:flex;flex-direction:column;align-items:center;gap:
   <div class="section-title reveal">Join the Movement</div>
   <div class="community-card reveal">
     <div class="wa-icon">💬</div>
-    <h3>Lebanon Roads WhatsApp</h3>
-    <p>Road alerts, car meetups, deals, and pure Lebanese petrolhead chaos — all in one group. 2,000+ members and growing.</p>
-    <a class="wa-btn" href="https://chat.whatsapp.com/" target="_blank">💬 Join WhatsApp Group</a>
+    <h3>Lebanon Roads WhatsApp Channel</h3>
+    <p>Road alerts, car meetups, deals, and pure Lebanese petrolhead content — follow the official Lebanon Roads channel. Updated daily.</p>
+    <a class="wa-btn" href="https://whatsapp.com/channel/0029Vb7P1M6K0IBpXMtU6r1I" target="_blank">💬 Follow on WhatsApp</a>
   </div>
 </section>
 
 <!-- WEATHER -->
-<section id="weather" style="text-align:center">
+<section id="weather">
   <div class="section-label reveal">Live Conditions</div>
   <div class="section-title reveal">Beirut Weather</div>
   <div class="reveal" style="display:flex;justify-content:center">
-    <a class="weatherwidget-io"
-      href="https://forecast7.com/en/33d8935d50/beirut/"
-      data-label_1="BEIRUT" data-label_2="WEATHER" data-theme="dark">BEIRUT WEATHER</a>
+    <div class="msn-weather">
+
+      <!-- TOP: current conditions -->
+      <div class="msn-top">
+        <div class="msn-left">
+          <div class="msn-location">📍 Beirut, Lebanon</div>
+          <div class="msn-main-icon" id="w-icon">⏳</div>
+          <div class="msn-temp" id="w-temp">--</div>
+          <div class="msn-desc" id="w-desc">Loading weather...</div>
+          <div class="msn-feels" id="w-feels"></div>
+        </div>
+        <div class="msn-right">
+          <div class="msn-stat-grid" id="w-stats">
+            <div class="msn-stat"><div class="msn-stat-label">Humidity</div><div class="msn-stat-val" id="w-humid">--</div></div>
+            <div class="msn-stat"><div class="msn-stat-label">Wind</div><div class="msn-stat-val" id="w-wind">--</div></div>
+            <div class="msn-stat"><div class="msn-stat-label">Visibility</div><div class="msn-stat-val" id="w-vis">--</div></div>
+            <div class="msn-stat"><div class="msn-stat-label">UV Index</div><div class="msn-stat-val" id="w-uv">--</div></div>
+            <div class="msn-stat"><div class="msn-stat-label">Sunrise</div><div class="msn-stat-val" id="w-rise">--</div></div>
+            <div class="msn-stat"><div class="msn-stat-label">Sunset</div><div class="msn-stat-val" id="w-set">--</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIVIDER -->
+      <div class="msn-divider"></div>
+
+      <!-- BOTTOM: 5-day forecast -->
+      <div class="msn-forecast" id="w-forecast">
+        <div class="msn-forecast-loading">Loading forecast...</div>
+      </div>
+
+      <!-- UPDATED -->
+      <div class="msn-updated" id="w-updated"></div>
+    </div>
   </div>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs)}}(document,'script','weatherwidget-io-js');</script>
+
+  <style>
+  .msn-weather{
+    width:100%;max-width:800px;
+    background:linear-gradient(160deg,#0f1a2e 0%,#0d0d0d 60%);
+    border:1px solid rgba(100,160,255,.15);
+    border-radius:20px;overflow:hidden;
+  }
+  .msn-top{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    padding:2rem 2rem 1.5rem;
+  }
+  .msn-left{padding-right:2rem;border-right:1px solid rgba(255,255,255,.06)}
+  .msn-location{
+    font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+    color:#6aabff;margin-bottom:1rem;display:flex;align-items:center;gap:6px;
+  }
+  .msn-main-icon{font-size:4rem;line-height:1;margin-bottom:.5rem}
+  .msn-temp{
+    font-family:'Bebas Neue',sans-serif;font-size:5rem;letter-spacing:.02em;
+    line-height:1;color:white;margin-bottom:.3rem;
+  }
+  .msn-desc{font-size:1rem;color:#aaa;text-transform:capitalize;margin-bottom:.3rem}
+  .msn-feels{font-size:.82rem;color:#666}
+  .msn-right{padding-left:2rem;display:flex;align-items:center}
+  .msn-stat-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:1.2rem 2rem;width:100%;
+  }
+  .msn-stat{}
+  .msn-stat-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:3px}
+  .msn-stat-val{font-size:.95rem;font-weight:600;color:#ddd}
+  .msn-divider{height:1px;background:rgba(255,255,255,.06);margin:0 2rem}
+  .msn-forecast{
+    display:grid;grid-template-columns:repeat(5,1fr);
+    padding:1.5rem 2rem;gap:.5rem;
+  }
+  .msn-forecast-loading{
+    grid-column:1/-1;text-align:center;
+    font-size:.85rem;color:#555;padding:1rem 0;
+  }
+  .msn-day{
+    display:flex;flex-direction:column;align-items:center;gap:.4rem;
+    padding:.8rem .5rem;border-radius:10px;
+    border:1px solid transparent;
+    transition:all .2s;
+  }
+  .msn-day:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
+  .msn-day.today{background:rgba(100,160,255,.08);border-color:rgba(100,160,255,.2)}
+  .msn-day-name{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#666}
+  .msn-day.today .msn-day-name{color:#6aabff}
+  .msn-day-icon{font-size:1.8rem;line-height:1}
+  .msn-day-hi{font-size:.92rem;font-weight:700;color:#f0ede6}
+  .msn-day-lo{font-size:.82rem;color:#555}
+  .msn-day-desc{font-size:.62rem;color:#555;text-align:center;line-height:1.3}
+  .msn-updated{
+    text-align:center;font-size:.65rem;letter-spacing:.1em;
+    text-transform:uppercase;color:#333;
+    padding:.8rem 2rem 1rem;
+  }
+  @media(max-width:600px){
+    .msn-top{grid-template-columns:1fr}
+    .msn-left{border-right:none;border-bottom:1px solid rgba(255,255,255,.06);padding-right:0;padding-bottom:1.5rem;margin-bottom:1.5rem}
+    .msn-right{padding-left:0}
+    .msn-forecast{grid-template-columns:repeat(3,1fr)}
+  }
+  </style>
+
+  <script>
+  (async function loadMSNWeather(){
+    function wIcon(code){
+      code=parseInt(code);
+      if(code===113)return'☀️';
+      if(code===116)return'⛅';
+      if(code===119||code===122)return'☁️';
+      if(code===143||code===248||code===260)return'🌫️';
+      if(code>=176&&code<=185)return'🌦️';
+      if(code>=200&&code<=284)return'🌧️';
+      if(code>=293&&code<=321)return'🌦️';
+      if(code>=323&&code<=377)return'❄️';
+      if(code>=386&&code<=395)return'⛈️';
+      return'🌡️';
+    }
+    const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    try{
+      const r=await fetch('https://wttr.in/Beirut?format=j1');
+      const d=await r.json();
+      const c=d.current_condition[0];
+      const code=c.weatherCode;
+      document.getElementById('w-icon').textContent=wIcon(code);
+      document.getElementById('w-temp').textContent=c.temp_C+'°C';
+      document.getElementById('w-desc').textContent=c.weatherDesc[0].value;
+      document.getElementById('w-feels').textContent='Feels like '+c.FeelsLikeC+'°C';
+      document.getElementById('w-humid').textContent=c.humidity+'%';
+      document.getElementById('w-wind').textContent=c.windspeedKmph+' km/h';
+      document.getElementById('w-vis').textContent=c.visibility+' km';
+      document.getElementById('w-uv').textContent=c.uvIndex||'--';
+      // sunrise/sunset from first forecast day astronomy
+      const astro=d.weather[0].astronomy[0];
+      document.getElementById('w-rise').textContent=astro.sunrise;
+      document.getElementById('w-set').textContent=astro.sunset;
+      // 5-day forecast
+      const today=new Date().getDay();
+      const fc=document.getElementById('w-forecast');
+      fc.innerHTML=d.weather.slice(0,5).map((day,i)=>{
+        const dayName=i===0?'Today':days[(today+i)%7];
+        const hi=day.maxtempC;
+        const lo=day.mintempC;
+        const ic=wIcon(day.hourly[4].weatherCode);
+        const desc=day.hourly[4].weatherDesc[0].value;
+        return`<div class="msn-day${i===0?' today':''}">
+          <div class="msn-day-name">${dayName}</div>
+          <div class="msn-day-icon">${ic}</div>
+          <div class="msn-day-hi">${hi}°</div>
+          <div class="msn-day-lo">${lo}°</div>
+          <div class="msn-day-desc">${desc}</div>
+        </div>`;
+      }).join('');
+      const now=new Date();
+      document.getElementById('w-updated').textContent=
+        'Last updated '+now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+
+        ' · '+now.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+    }catch(e){
+      document.getElementById('w-icon').textContent='🌡️';
+      document.getElementById('w-temp').textContent='--';
+      document.getElementById('w-desc').textContent='Weather data unavailable';
+      document.getElementById('w-forecast').innerHTML='<div class="msn-forecast-loading">Could not load forecast.</div>';
+    }
+  })();
+  </script>
 </section>
 
 <!-- MUSIC -->
-<section id="music" style="text-align:center">
-  <div class="section-label reveal">Vibes</div>
-  <div class="section-title reveal">Driving Soundtrack</div>
-  <div class="reveal" style="display:flex;justify-content:center">
-    <iframe style="border-radius:12px;width:100%;max-width:700px;height:380px;border:none"
-      src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP?utm_source=generator&theme=0"
-      allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
+<section id="music">
+  <div class="section-label reveal">Featured Artist</div>
+  <div class="section-title reveal">Sound of the Streets</div>
+  <div class="artist-spotlight reveal">
+    <div class="artist-visual">
+      <div class="artist-avatar">
+        <div class="avatar-ring"></div>
+        <div class="avatar-inner">🎧</div>
+      </div>
+      <div class="sound-bars">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="artist-info">
+      <div class="artist-tag">Now Playing on Lebanon Roads</div>
+      <h2 class="artist-name">ossivibes</h2>
+      <p class="artist-bio">The soundtrack to Lebanese roads. ossivibes delivers raw, hypnotic beats built for late-night drives, mountain cuts, and coastal cruises. Stream his full catalogue on Anghami.</p>
+      <div class="artist-actions">
+        <a class="anghami-btn" href="https://play.anghami.com/artist/14531454" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#FF0050"/><polygon points="10,8 17,12 10,16" fill="white"/></svg>
+          Listen on Anghami
+        </a>
+      </div>
+      <div class="platform-note">🇱🇧 Lebanese Artist · Available on Anghami</div>
+    </div>
   </div>
 </section>
 
@@ -343,7 +550,7 @@ footer{padding:2.5rem;display:flex;flex-direction:column;align-items:center;gap:
     <h2>Lebanon Roads Magazine</h2>
     <p>Car culture, street stories, Lebanese builds, and the machines dominating Beirut roads. Coming 2025.</p>
   </div>
-  <a class="btn-ghost" href="#community" style="border-color:rgba(255,255,255,.3);color:white">Stay Updated →</a>
+  <a class="btn-ghost" href="https://whatsapp.com/channel/0029Vb7P1M6K0IBpXMtU6r1I" target="_blank" style="border-color:rgba(255,255,255,.3);color:white">Follow on WhatsApp →</a>
 </div>
 
 <!-- NEWS -->
@@ -362,8 +569,8 @@ footer{padding:2.5rem;display:flex;flex-direction:column;align-items:center;gap:
   <a class="social-pill yt" href="#">▶ YouTube</a>
   <a class="social-pill tg" href="#">✈️ Telegram</a>
   <a class="social-pill tw" href="#">𝕏 Twitter/X</a>
-  <a class="social-pill sp" href="#">🎧 Spotify</a>
-  <a class="social-pill wa" href="https://chat.whatsapp.com/" target="_blank">💬 WhatsApp</a>
+  <a class="social-pill anghami" href="https://play.anghami.com/artist/14531454" target="_blank">🎧 ossivibes</a>
+  <a class="social-pill wa" href="https://whatsapp.com/channel/0029Vb7P1M6K0IBpXMtU6r1I" target="_blank">💬 WhatsApp</a>
 </div>
 
 <!-- FOOTER -->
