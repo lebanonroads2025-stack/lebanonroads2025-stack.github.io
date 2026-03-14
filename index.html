@@ -6,7 +6,7 @@
 <title>Lebanon Roads 2025</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-/* GENERAL RESET */
+/* GLOBAL STYLES */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
 --red:#e8212a;
@@ -20,8 +20,6 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none}
-
-/* CURSOR */
 #cursor{position:fixed;width:10px;height:10px;background:var(--red);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s}
 #cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(232,33,42,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,opacity .2s}
 
@@ -34,7 +32,7 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);over
 .ticker-item .dn{color:#e8212a}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* NAVIGATION */
+/* NAV */
 nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(8,8,8,.92);backdrop-filter:blur(12px)}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.05em;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:10px}
 .nav-logo .lr{color:var(--red)}
@@ -108,18 +106,17 @@ section{padding:5rem 2.5rem;border-bottom:1px solid var(--border)}
 </style>
 </head>
 <body>
-
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 
 <!-- TICKER -->
 <div class="ticker-wrap">
-<div class="ticker-inner" id="ticker">
-<div class="ticker-item up">BTC $28,450</div>
-<div class="ticker-item dn">ETH $1,860</div>
-<div class="ticker-item up">S&P 500 +0.35%</div>
-<div class="ticker-item dn">NASDAQ -0.12%</div>
-<!-- Add more items as desired -->
+<div class="ticker-inner">
+<div class="ticker-item">BTC <span class="up">+2.4%</span></div>
+<div class="ticker-item">ETH <span class="dn">-1.2%</span></div>
+<div class="ticker-item">NASDAQ <span class="up">+0.7%</span></div>
+<div class="ticker-item">S&P500 <span class="dn">-0.3%</span></div>
+<div class="ticker-item">LEBANON ROAD ALERT</div>
 </div>
 </div>
 
@@ -170,6 +167,8 @@ LEBANON <span class="lr">ROADS</span>
 </div>
 </section>
 
+<!-- ADDITIONAL SECTIONS HERE (Markets, Videos, Gadgets, Anghami, etc.) -->
+
 <!-- SOCIAL BAR -->
 <div class="social-bar">
 <a class="social-pill insta" href="https://www.instagram.com/lebanon.roads" target="_blank"> Instagram</a>
@@ -181,31 +180,16 @@ LEBANON <span class="lr">ROADS</span>
 <a class="social-pill wa" href="https://whatsapp.com/channel/0029Vb7P1M6K0IBpXMtU6r1I" target="_blank">WhatsApp</a>
 </div>
 
-<!-- PLACEHOLDER SECTIONS -->
-<section id="markets">
-<div class="section-label">Markets</div>
-<div class="section-title">Market Updates</div>
-<p>Live trading charts, car stock updates, and more will appear here.</p>
-</section>
-
-<section id="videos">
-<div class="section-label">Videos</div>
-<div class="section-title">Latest Videos</div>
-<p>Video content from TikTok, YouTube, and IG Reels will be embedded here.</p>
-</section>
-
-<section id="gadgets">
-<div class="section-label">Gadgets</div>
-<div class="section-title">Car Gadgets & Tech</div>
-<p>Cool car gadgets, tuning tools, and automotive tech will appear here.</p>
-</section>
-
-<section id="news">
-<div class="section-label">News</div>
-<div class="section-title">Lebanese Car Scene News</div>
-<p>Updates, launches, and events from Lebanon's automotive world.</p>
-</section>
-
-<!-- ANGhAMI SECTION -->
-<section id="music">
-<div class="section-label
+<script>
+// Custom Cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+document.addEventListener('mousemove', e => {
+cursor.style.left = e.clientX + 'px';
+cursor.style.top = e.clientY + 'px';
+ring.style.left = e.clientX + 'px';
+ring.style.top = e.clientY + 'px';
+});
+</script>
+</body>
+</html>
