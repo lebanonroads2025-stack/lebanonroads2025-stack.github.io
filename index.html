@@ -166,9 +166,9 @@ section{padding:5rem 2.5rem;border-bottom:1px solid var(--border)}
 
 /* GRIDS */
 .market-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
-.market-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s}
+.market-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s;min-height:300px}
 .market-card:hover{border-color:#333}
-.market-card iframe{border:none;width:100%;height:280px}
+.market-card iframe{border:none;width:100%;height:300px;display:block}
 
 .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem}
 .video-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:transform .2s,border-color .2s}
@@ -392,22 +392,40 @@ footer{padding:2.5rem;display:flex;flex-direction:column;align-items:center;gap:
   <div class="section-label reveal">Watch</div>
   <div class="section-title reveal">Car Videos</div>
   <div class="video-grid reveal">
-    <div class="video-card">
-      <iframe src="https://www.youtube.com/embed/32si5cfrCNc" allowfullscreen loading="lazy"></iframe>
-      <div class="vlabel">Featured Build</div>
-    </div>
-    <div class="video-card">
-      <iframe src="https://www.youtube.com/embed/2g4sL1qkL8Q" allowfullscreen loading="lazy"></iframe>
-      <div class="vlabel">Street Story</div>
-    </div>
-    <div class="video-card">
-      <iframe src="https://www.youtube.com/embed/7p9R8p0kA1Q" allowfullscreen loading="lazy"></iframe>
-      <div class="vlabel">Spot of the Week</div>
-    </div>
+    <a class="video-card" href="https://www.tiktok.com/@lebanon.roads/video/7609943412778749202" target="_blank" style="text-decoration:none;display:block">
+      <div style="position:relative;width:100%;height:200px;background:#1a1a1a;overflow:hidden">
+        <img src="https://www.tiktok.com/api/img/?itemId=7609943412778749202&location=0" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.4)">
+          <div style="width:52px;height:52px;background:#ff0050;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem">▶</div>
+        </div>
+        <div style="position:absolute;top:10px;left:10px;background:#ff0050;color:white;font-size:.65rem;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:3px">TIKTOK</div>
+      </div>
+      <div class="vlabel">🇱🇧 Lebanon Roads — Video 1</div>
+    </a>
+    <a class="video-card" href="https://www.tiktok.com/@lebanon.roads/video/7576759601924721927" target="_blank" style="text-decoration:none;display:block">
+      <div style="position:relative;width:100%;height:200px;background:#1a1a1a;overflow:hidden">
+        <img src="https://www.tiktok.com/api/img/?itemId=7576759601924721927&location=0" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.4)">
+          <div style="width:52px;height:52px;background:#ff0050;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem">▶</div>
+        </div>
+        <div style="position:absolute;top:10px;left:10px;background:#ff0050;color:white;font-size:.65rem;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:3px">TIKTOK</div>
+      </div>
+      <div class="vlabel">🇱🇧 Lebanon Roads — Video 2</div>
+    </a>
+    <a class="video-card" href="https://www.tiktok.com/@lebanon.roads/video/7603621682175118610" target="_blank" style="text-decoration:none;display:block">
+      <div style="position:relative;width:100%;height:200px;background:#1a1a1a;overflow:hidden">
+        <img src="https://www.tiktok.com/api/img/?itemId=7603621682175118610&location=0" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.4)">
+          <div style="width:52px;height:52px;background:#ff0050;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem">▶</div>
+        </div>
+        <div style="position:absolute;top:10px;left:10px;background:#ff0050;color:white;font-size:.65rem;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:3px">TIKTOK</div>
+      </div>
+      <div class="vlabel">🇱🇧 Lebanon Roads — Video 3</div>
+    </a>
   </div>
   <div style="text-align:center;margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap" class="reveal">
-    <a class="btn-ghost" href="https://www.youtube.com/@LebanonRoads" target="_blank">▶ Watch All on YouTube</a>
-    <a class="btn-ghost" href="https://www.tiktok.com/@lebanon.roads" target="_blank">🎵 Follow on TikTok</a>
+    <a class="btn-ghost" href="https://www.tiktok.com/@lebanon.roads" target="_blank">🎵 Watch All on TikTok</a>
+    <a class="btn-ghost" href="https://www.youtube.com/@LebanonRoads" target="_blank">▶ YouTube Channel</a>
   </div>
 </section>
 
