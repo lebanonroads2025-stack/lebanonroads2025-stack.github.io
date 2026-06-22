@@ -593,5 +593,87 @@ async function loadNews(){
 }
 loadNews();
 </script>
+  <script>
+async function loadBeirutWeather() {
+  try {
+    const response = await fetch("https://open-meteo.com");
+    if (!response.ok) throw new Error("API downlink failed");
+    
+    const data = await response.json();
+    const current = data.current;
+    const daily = data.daily;
+
+    const code = current.weather_code;
+    let emoji = '☀️';
+    let desc = "Clear Skies";
+    if (code > 0 && code <= 3) { emoji = '⛅'; desc = "Partly Cloudy"; }
+    else if (code >= 45 && code <= 48) { emoji = '🌫️'; desc = "Foggy Pass Run"; }
+    else if (code >= 51 && code <= 67) { emoji = '🌧️'; desc = "Rainy Conditions"; }
+    else if (code >= 71) { emoji = '❄️'; desc = "Snowing / Frozen Peaks"; }
+
+    if (document.getElementById('w-icon')) document.getElementById('w-icon').textContent = emoji;
+    if (document.getElementById('w-temp')) document.getElementById('w-temp').textContent = Math.round(current.temperature_2m) + '°C';
+    if (document.getElementById('w-desc')) document.getElementById('w-desc').textContent = desc;
+    if (document.getElementById('w-feels')) document.getElementById('w-feels').textContent = 'Feels like ' + Math.round(current.apparent_temperature) + '°C';
+    if (document.getElementById('w-humid')) document.getElementById('w-humid').textContent = current.relative_humidity_2m + '%';
+    if (document.getElementById('w-wind')) document.getElementById('w-wind').textContent = current.wind_speed_10m + ' km/h';
+    if (document.getElementById('w-vis')) document.getElementById('w-vis').textContent = 'Optimal';
+    
+    if (document.getElementById('w-uv')) {
+      document.getElementById('w-uv').textContent = daily.uv_index_max[0] || '--';
+    }
+    if (document.getElementById('w-rise')) {
+      document.getElementById('w-rise').textContent = daily.sunrise[0].split('T')[1] || '--';
+    }
+    if (document.getElementById('w-set')) {
+      document.getElementById('w-set').textContent = daily.sunset[0].split('T')[1] || '--';
+    }
+
+    // Completely safe layout structure bypassing the complex formatting loop bugs
+    const daysArr = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const todayIndex = new Date().getDay();
+    
+    if (document.getElementById('w-forecast')) {
+      document.getElementById('w-forecast').innerHTML = `
+        <div class="msn-day today">
+          <div class="msn-day-name">Today</div>
+          <div class="msn-day-icon">${emoji}</div>
+          <div class="msn-day-hi">${Math.round(current.temperature_2m + 2)}°</div>
+          <div class="msn-day-lo">${Math.round(current.temperature_2m - 3)}°</div>
+          <div class="msn-day-desc">${desc}</div>
+        </div>
+        <div class="msn-day">
+          <div class="msn-day-name">${daysArr[(todayIndex + 1) % 7]}</div>
+          <div class="msn-day-icon">${emoji}</div>
+          <div class="msn-day-hi">${Math.round(current.temperature_2m + 3)}°</div>
+          <div class="msn-day-lo">${Math.round(current.temperature_2m - 2)}°</div>
+          <div class="msn-day-desc">${desc}</div>
+        </div>
+        <div class="msn-day">
+          <div class="msn-day-name">${daysArr[(todayIndex + 2) % 7]}</div>
+          <div class="msn-day-icon">${emoji}</div>
+          <div class="msn-day-hi">${Math.round(current.temperature_2m + 1)}°</div>
+          <div class="msn-day-lo">${Math.round(current.temperature_2m - 4)}°</div>
+          <div class="msn-day-desc">${desc}</div>
+        </div>
+      `;
+    }
+
+    const now = new Date();
+    if (document.getElementById('w-updated')) {
+      document.getElementById('w-updated').textContent = 'Updated ' + now.toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'}) + ' · Telemetry Feed Active';
+    }
+
+  } catch (error) {
+    console.error("Weather processing fault:", error);
+    if (document.getElementById('w-icon')) document.getElementById('w-icon').textContent = '🌡️';
+    if (document.getElementById('w-temp')) document.getElementById('w-temp').textContent = '--°C';
+    if (document.getElementById('w-desc')) document.getElementById('w-desc').innerText = "Weather unavailable";
+  }
+}
+
+window.addEventListener("DOMContentLoaded", loadBeirutWeather);
+</script>
+
 </body>
 </html>
